@@ -1,33 +1,103 @@
 project:
-  name: cfn-sample-template
-  owner: quickstart@amazon.com
-  package_lambda: false
+  name: quickstart-hashicorp-vault
+  owner: quickstart-eng@amazon.com
+  package_lambda: true
+  build_submodules: true
+  shorten_stack_name: true
+  lambda_source_path: functions/source
+  lambda_zip_path: functions/packages
   regions:
-  - ap-northeast-1
+  # No SSM Support
+  #- eu-north-1
+  - ap-south-1
+  - eu-west-3
+  - eu-west-2
+  - eu-west-1
   - ap-northeast-2
+  - ap-northeast-1
+  - sa-east-1
+  - ca-central-1
   - ap-southeast-1
   - ap-southeast-2
   - eu-central-1
-  - eu-west-1
-  - sa-east-1
   - us-east-1
-  - us-west-1
+  - us-east-2
   - us-west-2
+  parameters:
+    AvailabilityZones: $[taskcat_genaz_3]
+    AccessCIDR: --override--
+    KeyPairName: --override--
+    NumBastionHosts: 1
+    QSS3BucketName: $[taskcat_autobucket]
+    QSS3BucketRegion: $[taskcat_current_region]
+    VaultClientNodes: 1
+    QSS3KeyPrefix: quickstart-hashicorp-vault/
 tests:
-  sample:
+  ubuntu-base:
     parameters:
-      Param1: 'Inputs to Stack'
-      # Examples: of other taskcat dynamic input parameters for more into see http://taskcat.io
-      #
-      #      AvailabilityZones: $[taskcat_genaz_3]
-      #      ByteValue: 1
-      #      PasswordA: $[taskcat_genpass_8A]
-      #      PasswordB: $[taskcat_genpass_32S]
-      #      RandomNumber: $[taskcat_random-numbers]
-      #      RandomString: $[taskcat_random-string]
-      #      StackName: TestStack
-      #      UUID: $[taskcat_genuuid]
-      #
+      VaultAMIOS: Ubuntu-2004-HVM
+      VaultKubernetesHostURL: ''
     regions:
+    # No SSM Support
+    # - eu-north-1 # StockHolm
+    - ap-south-1
+    - eu-west-3
+    - eu-west-2
+    - eu-west-1
+    # 2 AZ only
+    # - ap-northeast-3
+    - ap-northeast-2
+    - ap-northeast-1
+    - sa-east-1
+    - ca-central-1
+    - ap-southeast-1
+    - ap-southeast-2
+    - eu-central-1
+    - us-east-1
     - us-east-2
-    template: templates/another-workload.template.yaml
+    - us-west-2
+    # No SSM Support
+    # - ap-east-1
+    # No SSM Support
+    # - me-south-1
+    template: templates/quickstart-hashicorp-vault-main.template
+  cis-level-1:
+    parameters:
+      VaultAMIOS: CIS-Ubuntu-2004-HVM
+      VaultKubernetesHostURL: ''
+    regions:
+    # No SSM Support
+    # - eu-north-1
+    - ap-south-1
+    - eu-west-3
+    - eu-west-2
+    - eu-west-1
+    # 2 AZ only
+    # - ap-northeast-3
+    - ap-northeast-2
+    - ap-northeast-1
+    - sa-east-1
+    - ca-central-1
+    - ap-southeast-1
+    - ap-southeast-2
+    - eu-central-1
+    - us-east-1
+    - us-east-2
+    - us-west-2
+    # No SSM Support
+    # - ap-east-1
+    # No SSM Support
+    # - me-south-1
+    template: templates/quickstart-hashicorp-vault-main.template
+#  cis-level-1-single:
+#     parameters:
+#       VaultAMIOS: CIS-Ubuntu-2004-HVM
+#     regions:
+#      - us-west-2
+#     template: templates/quickstart-hashicorp-vault-main.template
+#  ubuntu-single:
+#    parameters:
+#      VaultAMIOS: Ubuntu-2004-HVM
+#    regions:
+#      - us-west-2
+#    template: templates/quickstart-hashicorp-vault-main.template
