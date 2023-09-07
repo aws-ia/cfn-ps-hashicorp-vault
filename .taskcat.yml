@@ -1,5 +1,5 @@
 project:
-  name: quickstart-hashicorp-vault
+  name: cfn-ps-hashicorp-vault
   owner: quickstart-eng@amazon.com
   package_lambda: true
   build_submodules: true
@@ -31,7 +31,7 @@ project:
     QSS3BucketName: $[taskcat_autobucket]
     QSS3BucketRegion: $[taskcat_current_region]
     VaultClientNodes: 1
-    QSS3KeyPrefix: quickstart-hashicorp-vault/
+    QSS3KeyPrefix: cfn-ps-hashicorp-vault/
 tests:
   ubuntu-base:
     parameters:
