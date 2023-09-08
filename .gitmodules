@@ -13,3 +13,6 @@
 	path = submodules/cfn-ps-aws-acm-certificate
 	url = git@github.com:aws-ia/cfn-ps-aws-acm-certificate.git
 	branch = main
+[submodule "submodules/lambda-copyzips"]
+	path = submodules/lambda-copyzips
+	url = git@github.com:aws-ia/lambda-copyzips.git
