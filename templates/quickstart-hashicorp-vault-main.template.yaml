@@ -1,6 +1,6 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'HashiCorp Vault, License: Apache 2.0 (Please do not remove) Oct,18,2019'
+Description: 'HashiCorp Vault, License: Apache 2.0 (Please do not remove) Oct,18,2019 (qs-1uia4b7uj)'
 Metadata:
   AWS::CloudFormation::Interface:
     ParameterGroups:
@@ -80,8 +80,6 @@ Metadata:
         default: Quick Start S3 bucket Region
       AccessCIDR:
         default: Permitted IP range
-      VPCID:
-        default: VPC ID
       VPCCIDR:
         default: VPC CIDR
       VaultVersion:
@@ -380,7 +378,7 @@ Resources:
           Ref: VPCCIDR
       TemplateURL:
         !Sub
-          - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/cfn-ps-aws-vpc/templates/aws-vpc.template'
+          - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/cfn-ps-aws-vpc/templates/aws-vpc.template.yaml'
           - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
     Type: AWS::CloudFormation::Stack
@@ -414,7 +412,7 @@ Resources:
     Properties:
       TemplateURL:  
         !Sub
-          - "https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/quickstart-hashicorp-vault.template"
+          - "https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/quickstart-hashicorp-vault.template.yaml"
           - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:
