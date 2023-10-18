@@ -238,7 +238,7 @@ Parameters:
     ConstraintDescription: Quick Start bucket name can include numbers, lowercase
       letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen
       (-).
-    Default: aws-ia-us-east-1
+    Default: aws-ia
     Description: S3 bucket name for the Quick Start assets. Quick Start bucket name
       can include numbers, lowercase letters, uppercase letters, and hyphens (-).
       It cannot start or end with a hyphen (-).
@@ -428,7 +428,7 @@ Mappings:
       US2004HVM: ami-067573cd8d4480518
 
 Conditions:
-  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, aws-quickstart]
+  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, aws-ia]
   InternalLoadBalancer: !Equals [!Ref LoadBalancerType, Internal]
   CustomDns: !Not [!Equals [!Ref DomainName, '']]
   CreateDns: !And
