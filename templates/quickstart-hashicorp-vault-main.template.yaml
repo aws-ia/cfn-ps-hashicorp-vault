@@ -123,7 +123,7 @@ Metadata:
       VaultKubernetesPolicies:
         default: "Kubernetes Vault policies"
 Conditions:
-  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-ia-us-east-1']
+  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-ia']
 Parameters:
   AvailabilityZones:
     Description: "List of Availability Zones to use for the VPC subnets. Three Availability Zones are used for this deployment."
@@ -184,7 +184,7 @@ Parameters:
     ConstraintDescription: Quick Start bucket name can include numbers, lowercase
       letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen
       (-).
-    Default: aws-ia-us-east-1
+    Default: aws-ia
     Description: S3 bucket name for the Quick Start assets. The Quick Start bucket name
       can include numbers, lowercase letters, uppercase letters, and hyphens (-).
       It cannot start or end with a hyphen (-).
